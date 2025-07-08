@@ -1,0 +1,33 @@
+# ******************
+# ECCO cost function
+# ******************
+#
+ &ECCO_COST_NML
+#
+ using_cost_sst = .TRUE.,
+ using_cost_altim = .TRUE.,
+#
+ cost_iprec  = 32,
+ cost_yftype = 'RL',
+#
+ /
+#
+ &ECCO_GENCOST_NML
+# MUCH SAFER TO LET STARTDATE = MODELSTARTDATE. Test OK if not using!!
+# see "MITgcm_contrib/gael/verification/global_oce_llc90/input.ecco_v4/data.ecco"
+#
+  gencost_avgperiod(1)  = 'day',
+  gencost_barfile(1) = 'm_boxmean_theta',
+#  gencost_datafile(1) = 'reynolds_oiv2_r1_mar2018_simasked',
+#  gencost_errfile(1) = 'sigma_half_areascaled.bin',
+  gencost_name(1) = 'boxmean_theta',
+  gencost_spmin(1) = -1.8,
+  gencost_spmax(1) = 40.,
+  gencost_spzero(1) = 0.,
+  gencost_mask = 'nino34_mask'
+#  gencost_preproc(1,4)='mean',
+#  gencost_outputlevel(1)=1,
+  mult_gencost(1) = 1.,
+ 
+ /
+#
